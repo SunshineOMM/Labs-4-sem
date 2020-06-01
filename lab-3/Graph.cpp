@@ -4,6 +4,8 @@
 #include <queue>
 #include <set>
 #include <algorithm>
+#include <iostream>
+
 using namespace std;
 
 struct Locality {
@@ -29,7 +31,7 @@ class Graph {
 		}
 		return -1;
 	}
-	void deepRecursiveSearch(int line, std::ostream& out) {
+	void deepRecursiveSearch(int line, ostream& out) {
 		out << _citiesVec[line]._name << "\t";
 		_citiesVec[line]._state = 1;
 		for (int i = 0; i < _adjMatrix[line].size(); ++i) {
@@ -44,18 +46,7 @@ class Graph {
 public:
 	Graph() : _citiesVec(*new vector<Locality>(0)), _adjMatrix(*new vector<vector<double>>(0, vector<double>(0))) {}
 	Graph(vector<Locality> citiesVec, vector<vector<double>> adjMatrix) : _citiesVec(citiesVec), _adjMatrix(adjMatrix) {}
-	Graph(size_t sitiesNumbers) :_citiesVec(*new vector<Locality>(sitiesNumbers)), _adjMatrix(*new vector<vector<double>>(sitiesNumbers, vector<double>(sitiesNumbers))) {}
-
-	~Graph() {
-
-		for (int i = 0; i < _adjMatrix.size(); ++i) {
-			_adjMatrix[i].~vector();
-		}
-		_adjMatrix.~vector();
-	}
-
-
-
+	Graph(size_t sitiesNumbers) :_citiesVec(sitiesNumbers), _adjMatrix(sitiesNumbers, vector<double>(sitiesNumbers)) {}
 
 	void AddVertex(string name, size_t count, size_t state) {
 		if (findVertex(name) != -1) throw string("A city with the given name is already present");
@@ -123,7 +114,7 @@ public:
 	}
 
 	void print(std::ostream& out)const {
-		out << "City name:" << "\t\t" << "City population" << endl;
+		out << "City name:" << "\t\t" << "City population" <<  endl;
 		for (int i = 0; i < _citiesVec.size(); ++i) {
 			out << i << "\t" << _citiesVec[i]._name << "\t\t" << _citiesVec[i]._count << endl;
 		}
@@ -348,12 +339,3 @@ public:
 		return result;
 	}
 };
-
-
-
-
-
-
-
-
-

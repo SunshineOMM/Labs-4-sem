@@ -1,0 +1,10 @@
+# ninja log v5
+8	925	612344846	lab-1/CMakeFiles/lab-1.dir/Sort.cpp.obj	551d44066813e44c
+12	950	612344846	lab-2/CMakeFiles/lab-2.dir/main.cpp.obj	768e0975569f5587
+2	945	612344846	lab-1/CMakeFiles/lab-1.dir/main.cpp.obj	48c7d9ee9f53e26b
+17	934	612344846	lab-3/CMakeFiles/lab-3.dir/Graph.cpp.obj	ba0af8139c281207
+22	942	612344846	lab-2/CMakeFiles/lab-2.dir/UnorderedSet.cpp.obj	2940c50a25d24987
+27	913	612344846	lab-2/CMakeFiles/lab-2.dir/AVLTree.cpp.obj	afe51f82c23c56a3
+32	952	612344846	lab-2/CMakeFiles/lab-2.dir/OrderedVectorBasedOn3Laboratory.cpp.obj	3de1bc0bd7744f8c
+1	658	612344866	lab-3/CMakeFiles/lab-3.dir/main.cpp.obj	6aaf8438fc7093bd
+659	880	612344867	lab-3/lab-3.exe	4ba2f0b8bfdaf10e

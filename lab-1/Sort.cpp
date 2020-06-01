@@ -1,4 +1,5 @@
-#include <vector>
+﻿#include <vector>
+#include <iostream>
 
 using namespace std;
 template<class Iterator>
@@ -10,7 +11,6 @@ void user_swap(Iterator it1, Iterator it2) {
 
 template< class Iterator>
 void SortByCelection(Iterator begin, Iterator end) {
-	cout << "SortByCelection" << endl;
 	for (auto i = begin; i < end - 1; ++i) {
 		Iterator min = i;
 		for (Iterator j = i + 1; j < end; ++j)
@@ -24,7 +24,7 @@ void SortByCelection(Iterator begin, Iterator end) {
 
 template< class Iterator>
 void BubbleSort(Iterator begin, Iterator end) {
-	cout << "BubbleSort" << endl;
+	
 	for (Iterator i = begin; i < end - 1; ++i) {
 		for (Iterator j = begin; j < end - 1; ++j) {
 			if (*j > *(j + 1)) user_swap(j, j + 1);
@@ -34,13 +34,13 @@ void BubbleSort(Iterator begin, Iterator end) {
 
 template< class Iterator>
 void ShellSort(Iterator begin, Iterator end) {
-	cout << "ShellSort" << endl;
+
 	{
 		for (int gap = (end - begin) / 2; gap != 0; gap /= 2)
 		{
 			for (auto i = begin + gap; i < end; ++i)
 			{
-				for (auto j = i; j >= begin + gap; j -= gap) {
+				for (auto j = i; j >= begin + gap; j -= gap) {//i=begin+gap
 					if (*(j - gap) > *j)
 						user_swap(j, j - gap);
 				}
@@ -51,28 +51,29 @@ void ShellSort(Iterator begin, Iterator end) {
 
 template< class Iterator>
 void QuickSort(Iterator begin, Iterator end) {
-	if (end - begin == 1) {
+	if (end - begin == 1) {// при условии, когда между end и begin останется 1 элемент(условие нужно для ситуации, когда уже нельзя выбрать опорный элемент, так как всего 2 свободных),
+						   //сравниваем begin и begin+1 и при необходимости меняем
 		if (*(end - 1) < *begin) user_swap(begin, end - 1);
 		return;
 	}
-	auto pivot = begin;
-	auto r = end - 1;
+	auto pivot = begin;// выбираем опорный элемент, в нашем случае - это первый элемент
+	auto r = end - 1;// так как в первый вызов вункции передаётся элемент за последним
 	auto l = begin;
 
-	while (r >= l) {
-		while (*r >= *pivot && r > begin) --r;
-		while (*l <= *pivot && l < end - 1) ++l;
-		if (r > l) user_swap(l, r);
-		if (r == l) break;
+	while (r >= l) {// повторяем до тех пор, пока r не зайдёт за l
+		while (*r >= *pivot && r > begin) --r;// двигаемся справа налево и останавливаемся на элементе меньшим, чем pivot
+		while (*l <= *pivot && l < end - 1) ++l;// двигаемся слева направо и останавливаемся на элементе большем, чем pivot
+		if (r > l) user_swap(l, r);// меняем найденные элементы местами
+		if (r == l) break;// условие прекращения while (когда уже не нужно будет ничего менять)
 	}
-	user_swap(r, pivot);
+	user_swap(r, pivot);//меняем местами самый правый элемент из тех, что меньше pivot с самим pivot
 	if (begin < r)
-		QuickSort(begin, r);
+		QuickSort(begin, r);// запускакем рекурсию начиная от начала, до опорного элемента
 	if (end > r + 1)
-		QuickSort(r + 1, end);
+		QuickSort(r + 1, end);// запускакем рекурсию начиная от опорного элемента невключительно до конца
 }
 
-//���������� �� ����� 
+//Реализация из Кнута 
 template<class Iterator, typename T>
 void NaturalTwoWayMergingSortingKnut(Iterator begin, Iterator end) {
 	bool s = 0;// 1
@@ -101,13 +102,13 @@ void NaturalTwoWayMergingSortingKnut(Iterator begin, Iterator end) {
 		}
 		f = 1;
 		d = 1;
-		while (i != j) {//������� �� ����� 13 ��������
+		while (i != j) {//условие на отсев 13 действия
 			if (*i > *j) {//3 
 				*k = *j;//8
 				k += d;
 				--j;
 				if (*(j + 1) <= *j) {//9
-					continue;// ������� � 3
+					continue;// переход к 3
 				}
 				else {
 					do {//10
@@ -119,7 +120,7 @@ void NaturalTwoWayMergingSortingKnut(Iterator begin, Iterator end) {
 					f = 0;
 					d = -d;
 					swap(k, l);
-					continue;// ������� � ���� 3
+					continue;// переход к шагу 3
 
 				}
 			}
@@ -128,7 +129,7 @@ void NaturalTwoWayMergingSortingKnut(Iterator begin, Iterator end) {
 				k += d;
 				++i;// 5
 				if (*(i - 1) <= *i) {
-					continue;//������� � ���� 3
+					continue;//переход к шагу 3
 				}
 				else {
 					do {//6
@@ -139,16 +140,16 @@ void NaturalTwoWayMergingSortingKnut(Iterator begin, Iterator end) {
 					f = 0;// 12
 					d = -d;
 					swap(k, l);
-					continue;// ������� � ���� 3	 
+					continue;// переход к шагу 3	 
 				}
 			}
 
 		}
-		if (i == j) {// ��� �� ��� 3 �����
+		if (i == j) {// это всё ещё 3 пункт
 			*k = *i;
 			if (f == 0) {//13
 				s = 1 - s;
-				//������� � ���� 2(�������������)
+				//переход к шагу 2(автоматически)
 			}
 			if (s == 0) {
 				auto be2 = v.begin();
@@ -166,14 +167,15 @@ void NaturalTwoWayMergingSortingKnut(Iterator begin, Iterator end) {
 		}
 
 	} while (!f);
-	cout << "That's all!";
 }
 
-//����� ����������
-inline void merge(vector<int>& start, vector<int>& result, int& i, int& j, int& k, int& l, int& rb, int& re, bool f) {
+//Более адекватная
 
-	if (f) {// ��� ����� ��������� ���� ����� ���������� � �������������� ������ ����� �������
-		while (i <= j && k <= l) {
+inline void merge(vector<int>& start, vector<int>& result, int& i, int& j, int& k, int& l, int& rb, int& re, bool f) {// функция слияния двух отсортированных массивов (i,j)-индексы левой части массива start
+																													  //(k,l)-индексы правой части массива start (rb,re)- индексы результирующего массива 
+																													  //f- флаг направления записи в результирующий массив
+	if (f) {// эта ветка сработает если нужно записывать в результирующий массив слева направо
+		while (i <= j && k <= l) {// слияние массивов, до тех пор пока один не кончится
 			if (start[i] >= start[l]) {
 				result[rb] = start[l];
 				rb++;
@@ -185,18 +187,18 @@ inline void merge(vector<int>& start, vector<int>& result, int& i, int& j, int& 
 				i++;
 			}
 		}
-		for (; i <= j; ++i) {
+		for (; i <= j; ++i) {//дозапись оставшегося массива в результирующий
 			result[rb] = start[i];
 			rb++;
 		}
-		for (; l >= k; --l) {
+		for (; l >= k; --l) {//дозапись оставшегося массива в результирующий
 			result[rb] = start[l];
 			rb++;
 		}
 
 	}
-	else {// � ���, ���� ����� ���������� � �������������� ������ ������ ������
-		while (i <= j && k <= l) {
+	else {// а эта, если нужно записывать в результирующий массив справа налево
+		while (i <= j && k <= l) {// слияние массивов, до тех пор пока один не кончится
 			if (start[i] >= start[l]) {
 				result[re] = start[l];
 				re--;
@@ -208,20 +210,20 @@ inline void merge(vector<int>& start, vector<int>& result, int& i, int& j, int& 
 				i++;
 			}
 		}
-		for (; i <= j; ++i) {
+		for (; i <= j; ++i) {//дозапись оставшегося массива в результирующий
 			result[re] = start[i];
 			re--;
 		}
-		for (; l >= k; --l) {
+		for (; l >= k; --l) {//дозапись оставшегося массива в результирующий
 			result[re] = start[l];
 			re--;
 		}
 
 	}
-	j = i;
+	j = i;// возврат индексов на исходные позиции
 	k = l;
 }
-inline void sequenceLength(vector<int>& v, int& j, int& k) {
+inline void sequenceLength(vector<int>& v, int& j, int& k) {// поиск максимальной возрастающей последовательности слева и справа
 	while (j<v.size()-1 && v[j] <= v[j + 1]) {
 		j++;
 	}
@@ -230,15 +232,16 @@ inline void sequenceLength(vector<int>& v, int& j, int& k) {
 	}
 }
 inline void mergeSort(vector<int>& v) {
-	vector<int> helpV(v.size());
+	vector<int> helpV(v.size());// формирование вспомогательного массива
+	// задание начальных условий
 	int rb = 0;
 	int re = v.size() - 1;
 	int i = 0, j = 0;
 	int k = v.size() - 1, l = v.size() - 1;
-	int  cycle = 0;
 
-	//������ �������� �����
+	//начало большого цикла
 	 do{
+		 // выставление в исходные позиции значений на каждом проходе цикла
 		 i = 0;
 		 j = 0;
 		 k = v.size() - 1;
@@ -246,24 +249,119 @@ inline void mergeSort(vector<int>& v) {
 		 rb = 0;
 		 re = v.size() - 1;
 		 
-		 while (j < k) {
-			 			 
-			 sequenceLength(v, j, k);//������� ����� ������������ ������������������ 
-			 if (j == l) break;// �������� ������� �� ���������� ����������
-			 merge(v, helpV, i, j, k, l, rb, re, 1);			 
-			 
-			 if (j >= k) break;
-			 
+		 while (j < k) {// повторяем пока в результате слияния не получится полный массив
 
+			 // сливаем в левую часть массива
+			 sequenceLength(v, j, k);//подсчёт длины возрастающей последовательности 
+			 if (j == l) break;// проверка условия на завершение сортировки(произойдёт когда возрастающая слева последовательность закончится в конце массива)
+			 merge(v, helpV, i, j, k, l, rb, re, 1);// слияние
+			 
+			 if (j >= k) break;// выход при условии, что в результате слияния получился полный массив
+			 
+			 // сливаем в правую часть массива
 			 sequenceLength(v, j, k);
-			 if (j == l) break;// �������� ������� �� ���������� ����������
+			 if (j == l) break;
 			 merge(v, helpV, i, j, k, l, rb, re, 0);			 
 			 			 
 		 }
-		 if (j == l) break;
-		cycle++;
+		 if (j == l) break;// проверка условия на завершение сортировки(произойдёт когда возрастающая слева последовательность закончится в конце массива)
 		std::swap(v, helpV);		
-	 } while (j != l);
+	 } while (j != l);// проверка условия на завершение сортировки(произойдёт когда возрастающая слева последовательность закончится в конце массива)
 }
 
 
+// Для практики
+inline void sort_bin_insert_for_practice(int* a, int n) // Сортировка бинарными вставками
+
+{
+	int x, left, right, sred;
+
+	for (int i = 1; i < n; i++)
+
+	{
+
+		if (a[i - 1] > a[i])
+
+		{
+
+			x = a[i]; // x – включаемый элемент
+
+			left = 0; // левая граница отсортированной части массива
+
+			right = i - 1; // правая граница отсортированной части массива
+
+			do {
+
+				sred = (left + right) / 2; // sred – новая "середина" последовательности
+
+				if (a[sred] < x) left = sred + 1;
+
+				else right = sred - 1;
+
+			} while (left <= right); // поиск ведется до тех пор, пока левая граница не окажется правее правой границы
+
+			for (int j = i - 1; j >= left; j--) a[j + 1] = a[j];
+
+			a[left] = x;
+
+		}
+
+	}
+
+}
+
+inline void sort_simple_insert(int* m, int n)
+
+{
+
+	int j, r;
+
+	for (int i = 1; i < n; i++)
+
+	{
+
+		r = m[i]; // Запоминаем текущий элемент в промежуточной переменной
+
+		j = i - 1;
+
+		while (j >= 0 && m[j] > r) // Ищем новое место вставки,
+
+		{
+			m[j + 1] = m[j]; j--;
+		} // сдвигая на 1 элемент вправо
+
+		m[j + 1] = r; // На освободившееся место вставляется элемент
+
+	}
+
+}
+
+ 
+
+//ф-ция для обмена значений ячеек
+inline void swapEl(int* arr, int i)
+{
+	int buff;
+	buff = arr[i];
+	arr[i] = arr[i - 1];
+	arr[i - 1] = buff;
+}
+//ф-ция "шейкер"-сортировки
+inline void myShakerSort(int* arr, int size,ostream& out)
+{
+	int leftMark = 1;
+	int rightMark = size - 1;
+	while (leftMark <= rightMark)
+	{
+		for (int i = rightMark; i >= leftMark; i--)
+			if (arr[i - 1] > arr[i]) swapEl(arr, i);
+		leftMark++;
+
+
+		for (int i = leftMark; i <= rightMark; i++)
+			if (arr[i - 1] > arr[i]) swapEl(arr, i);
+		rightMark--;
+
+		cout << " " << leftMark - 1; // просмотр количества итераций "(ut8)\nИтерация: "
+	}
+}

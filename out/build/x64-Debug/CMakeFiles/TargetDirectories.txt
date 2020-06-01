@@ -1,0 +1,11 @@
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-1/CMakeFiles/lab-1.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-1/CMakeFiles/edit_cache.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-1/CMakeFiles/rebuild_cache.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-2/CMakeFiles/lab-2.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-2/CMakeFiles/edit_cache.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-2/CMakeFiles/rebuild_cache.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-3/CMakeFiles/edit_cache.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-3/CMakeFiles/lab-3.dir
+D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug/lab-3/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,122 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "lab-1",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lab-1",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "lab-2",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lab-2",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "lab-3",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lab-3",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"name" : "TMP",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "lab-1::@c1d66285027a10484468",
+					"jsonFile" : "target-lab-1-Debug-60b95bf7accbc6c69ed8.json",
+					"name" : "lab-1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "lab-2::@364ca568725047f0c5b6",
+					"jsonFile" : "target-lab-2-Debug-ceb201c05d142cdaf602.json",
+					"name" : "lab-2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "lab-3::@de9b084602040343f720",
+					"jsonFile" : "target-lab-3-Debug-c999c0f4cead6532422d.json",
+					"name" : "lab-3",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem/out/build/x64-Debug",
+		"source" : "D:/Материалы/Универ/Программирование/code/4 half-year/Labs-4-sem"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -1,5 +1,7 @@
 #include<iostream>
 #include"Graph.cpp"
+#include "BestHandlerGraph.h"
+
 using namespace std;
 void printTestName(const char* s) {
 	for (int i = 0; i < 100; ++i) {
@@ -15,6 +17,10 @@ void printTestName(const char* s) {
 }
 
 int main() {
+	//===============================================================================================================================================
+	//																Тест Graph		
+	//===============================================================================================================================================
+	printTestName("Graph");
 	try {
 		Graph g = Graph();
 		//Вставка городов
@@ -168,6 +174,133 @@ int main() {
 	catch (string s) {
 		cout <<"EXCEPTION: "+ s << endl;
 	}
+
+
+	//===============================================================================================================================================
+	//																Тест GraphBest		
+	//===============================================================================================================================================
+	printTestName("GraphBest");
+
+	GraphBest<char, double> graph;
+
+	printTestName("AddVertex");
+	graph.AddVertex('a');
+	graph.AddVertex('b');
+	graph.AddVertex('c');
+	graph.AddVertex('d');
+	graph.Print(cout);
+
+	cout << endl;
+	cout << endl;
+	cout << endl;
+
+
+	printTestName("AddEdge");
+	graph.AddEdge('a', 'b', 3);
+	graph.AddEdge('a', 'c', 2);
+	graph.AddEdge('c', 'b', 4);
+	graph.AddEdge('a', 'd', 3);
+	graph.AddEdge('b', 'd', 4);
+	graph.AddEdge('b', 'a', 7);
+	graph.AddEdge('d', 'a', 1);
+	graph.Print(cout);
+
+	cout << endl;
+	cout << endl;
+	cout << endl;
+
+	printTestName("EraseVertex");
+	graph.EraseVertex('c');
+	graph.Print(cout);
+
+	cout << endl;
+	cout << endl;
+	cout << endl;
+
+	printTestName("EraseEdge");
+	graph.EraseEdge('a', 'b');
+	graph.Print(cout);
+
+
+
+
+	printTestName("EditingVertex");
+	graph.EditingVertex('a','q');
+	graph.Print(cout);
+
+
+
+	printTestName("EditingEdge");
+	graph.EditingEdge('b', 'q',15);
+	graph.Print(cout);
+
+
+	//===============================================================================================================================================
+	//																Тест алгоритмы GraphBest		
+	//===============================================================================================================================================
+
+	
+	GraphBest<char, double> graphNew;
+	graphNew.AddVertex('a');
+	graphNew.AddVertex('b');
+	graphNew.AddVertex('c');
+	graphNew.AddVertex('d');
+	graphNew.AddVertex('e');
+	graphNew.AddVertex('f');
+	graphNew.AddVertex('g');
+	graphNew.AddVertex('k');
+	graphNew.AddVertex('m');
+	graphNew.AddVertex('n');
+	graphNew.AddVertex('h');
+
+	graphNew.AddEdge('a', 'b', 1);
+	graphNew.AddEdge('a', 'f', 1);
+	graphNew.AddEdge('b', 'c', 1);
+	graphNew.AddEdge('b', 'e', 5);
+	graphNew.AddEdge('c', 'd', 6);
+	graphNew.AddEdge('e', 'd', 1);
+	graphNew.AddEdge('e', 'g', 10);
+	graphNew.AddEdge('e', 'h', 1);
+	graphNew.AddEdge('h', 'e', 1);
+	graphNew.AddEdge('h', 'g', 1);
+	graphNew.AddEdge('f', 'g', 1);
+	graphNew.AddEdge('g', 'k', 1);
+	graphNew.AddEdge('g', 'h', 1);
+	graphNew.AddEdge('g', 'e', 10);
+	graphNew.AddEdge('k', 'm', 1);
+	graphNew.AddEdge('m', 'n', 1);
+	graphNew.AddEdge('n', 'd', 1);
+
+	printTestName("DepthFirstSearch");
+	DepthFirstSearch(graphNew, 'a', [](auto vertex) {
+		cout << vertex << ' ';
+	});
+	cout << endl;
+
+	printTestName("BreadthFirstSearch");
+	BreadthFirstSearch(graphNew, 'a', [](auto vertex) {
+		cout << vertex << ' ';
+	});
+	cout << endl;
+
+	printTestName("Dijkstra");
+	char path[11];
+	size_t lenght = 0;
+	cout << Dijkstra(graphNew,'a','d', path,&lenght) << ": ";
+	for (size_t i = 0; i < lenght; ++i) {
+		cout << path[i] << " ";
+	}
+	cout << endl;
+
+
+	printTestName("BellmanFord");
+	char pathNew[11];
+	size_t lenghtNew = 0;
+	cout << BellmanFord(graphNew, 'a', 'd', pathNew, &lenghtNew) << ": ";
+	for (size_t i = 0; i < lenght; ++i) {
+		cout << pathNew[i] << " ";
+	}
+	cout << endl;
 
 	system("PAUSE");
 }

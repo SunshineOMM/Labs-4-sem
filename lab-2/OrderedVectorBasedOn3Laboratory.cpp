@@ -1,6 +1,39 @@
 #include <vector>
-#include "..\lab-1\Sort.cpp"
+//#include "..\lab-1\Sort.cpp"
+#include <iostream>
 using namespace std;
+
+
+template<class Iterator>
+void user_swap(Iterator it1, Iterator it2) {
+	auto bucket = *it1;
+	*it1 = *it2;
+	*it2 = bucket;
+}
+
+template< class Iterator>
+void QuickSort(Iterator begin, Iterator end) {
+	if (end - begin == 1) {// при условии, когда между end и begin останется 1 элемент(условие нужно для ситуации, когда уже нельзя выбрать опорный элемент, так как всего 2 свободных),
+						   //сравниваем begin и begin+1 и при необходимости меняем
+		if (*(end - 1) < *begin) user_swap(begin, end - 1);
+		return;
+	}
+	auto pivot = begin;// выбираем опорный элемент, в нашем случае - это первый элемент
+	auto r = end - 1;// так как в первый вызов вункции передаётся элемент за последним
+	auto l = begin;
+
+	while (r >= l) {// повторяем до тех пор, пока r не зайдёт за l
+		while (*r >= *pivot && r > begin) --r;// двигаемся справа налево и останавливаемся на элементе меньшим, чем pivot
+		while (*l <= *pivot && l < end - 1) ++l;// двигаемся слева направо и останавливаемся на элементе большем, чем pivot
+		if (r > l) user_swap(l, r);// меняем найденные элементы местами
+		if (r == l) break;// условие прекращения while (когда уже не нужно будет ничего менять)
+	}
+	user_swap(r, pivot);//меняем местами самый правый элемент из тех, что меньше pivot с самим pivot
+	if (begin < r)
+		QuickSort(begin, r);// запускакем рекурсию начиная от начала, до опорного элемента
+	if (end > r + 1)
+		QuickSort(r + 1, end);// запускакем рекурсию начиная от опорного элемента невключительно до конца
+}
 
 template<typename Node>
 class IteratorV final {

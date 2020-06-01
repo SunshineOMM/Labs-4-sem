@@ -3,7 +3,8 @@
 
 #include "AVLTree.cpp"
 #include "OrderedVectorBasedOn3Laboratory.cpp"
-#include "UnorderedSet.cpp"
+#include "BestHandlerUnorderedMap.h"
+#include "BestHandlerUnorderedSet.h"
 
 
 
@@ -37,28 +38,45 @@ int main() {
 	printTestName("UnorderedSet");
 
 	vector<int> v1 = { 0,1,2,3,4,5,6,7,8,9,11,13,15,17,19,6 };
-	UnorderedSet<int> un1(v1);
-	un1.print(cout);
-	cout << endl;
-
-	un1.insert(99);
-	un1.print(cout);
-	cout << endl;
-
-	un1.remove(99);
-	un1.print(cout);
-	cout << endl;
-
-	vector<int> v = { 0,1,2,3,4};
-	UnorderedSet<int> un(v);
-	cout << "BEGIN";
-	IteratorUnordSet<int> itb(un.begin());
-	IteratorUnordSet<int> ite(un.end());
-	for (; itb != ite; ++itb) {
-		cout << (*itb)._data << " ";
+	UnorderedSet<int> un1=UnorderedSet<int>();
+	for (int i = 0; i < v1.size(); ++i) {
+		un1.Insert(v1[i]);
 	}
-	cout << "END";
+	
+	un1.Print(cout);
 	cout << endl;
+
+	un1.Insert(99);
+	un1.Print(cout);
+	cout << endl;
+
+	un1.Remove(99);
+	un1.Print(cout);
+	cout << endl;
+
+	//===============================================================================================================================================
+	//																Тест UnorderedMap		
+	//===============================================================================================================================================
+
+	printTestName("UnorderedMap");
+
+	vector<char> vs = {'a','a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' ,'a' };
+	UnorderedMap<int,char> um = UnorderedMap<int,char>();
+	for (int i = 0; i < v1.size(); ++i) {
+		um.Insert(v1[i],vs[i]);
+	}
+
+	um.Print(cout);
+	cout << endl;
+
+	um.Insert(99,'b');
+	um.Print(cout);
+	cout << endl;
+
+	um.Remove(99);
+	um.Print(cout);
+	cout << endl;
+
 	//===============================================================================================================================================
 	//																Тест OrderedVector		
 	//===============================================================================================================================================
